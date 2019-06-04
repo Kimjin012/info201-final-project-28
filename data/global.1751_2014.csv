@@ -1,4 +1,4 @@
-Year,Total carbon emissions from fossil fuel consumption and cement production (million metric tons of C),Carbon emissions from gas fuel consumption,Carbon emissions from liquid fuel consumption,Carbon emissions from solid fuel consumption,Carbon emissions from cement production,Carbon emissions from gas flaring,Per capita carbon emissions (metric tons of carbon; after 1949 only)
+Year,Total,Gas_Fuel,Liquid_Fuel,Solid_Fuel,Cement_Production,Gas_Flairing,Per_Capita
 1751,3,0,0,3,0,0,
 1752,3,0,0,3,0,0,
 1753,3,0,0,3,0,0,
