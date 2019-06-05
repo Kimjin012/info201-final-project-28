@@ -14,17 +14,21 @@ Questions we will be focusing on specifically are “How are the Carbon dioxide 
 Thanks to ESRL, the Earth System Research Laboratory, we will have very simple access to reliable recorded datasets since the year 1958 to the year 2018. And from CDIAC, the Carbon Dioxide Information Analysis Center, we gather the data of different sources that create Carbon dioxide and how much they have changed as the time goes by since the 1700s.
 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 ## Data 1 - Average Levels of Carbon Dioxide Globally
 
 Let’s take a look at the Average Carbon Dioxide levels world wide, where we may better understand just how much has changed by average globally. Here we have the graph that displays the change of Carbon dioxide level in our Atmosphere from 1958 to 2019.
 
+
+```{r library, echo=FALSE, results='hide', include=FALSE}
+library(shiny)
+library(ggplot2)
+library(dplyr)
+library(R.utils)
+```
+
 ```{r output$c02_plot, echo=FALSE}
-source("climnate_stats/server.R")
-plot(output$c02_plot)
+source("Graphs.R")
+plot(temps2)
 ```
 
 We can observe the simple pattern since the beginning, although the patterns are not completely the same throughout each following year we can see that there are always falls and rises, but by average CO2 levels are constantly increasing every year.
@@ -34,14 +38,18 @@ We can observe the simple pattern since the beginning, although the patterns are
 
 Now, let’s look at what is causing these CO2 levels to rise every year and how much they are contributing to the creation of Carbon Dioxide. This data set was been established and recorded since 1751 but many of the sources such as gas and liquid fuels were not in use until 1870. The term Carbon Emission is the term we use here in correlation to CO2 levels. Main sources are from fuel consumption, manufacturing and fire.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r output$c02_plot2, echo=FALSE}
+source("Graphs.R")
+plot(temps)
 ```
 
 By looking at this data, we can observe that the CO2 levels from all of these various sources are constantly rising instead of dropping. We are constantly increasing the usage of fuels and manufacturing rates. Interesting changes we can observe is that solid fuels were the dominant source of releasing Carbon Dioxide until 1968, since then liquids have taken the lead from any other source. Which shows that since 1968 the liquid fuel has become more flexible and reliable.
 
+
 ## Conclusion
+
 So what does this all mean? What does increasing levels of CO2 mean to us?
 Unlike water vapor, Carbon Dioxide remains a gas in almost any atmospheric temperature. When Carbon Dioxide levels in the air decreases, Earth starts to cool and some water vapor begins to separate off the atmosphere. But when Carbon Dioxide concentrations increase, air temperatures increase as well, and more and more water vapor evaporates into the atmosphere rather than fall, which then magnifies greenhouse heating.
 Hence, Carbon Dioxide is the gas that sets the temperature. Carbon Dioxide controls the amount of water vapor in the atmosphere and thus the size of the greenhouse effect.
-As is shown above, the CO2 level is steadily rising, which means it is influencing and changing the Earth's global temperature as we speak. We must begin handeling this matter intently as it requires extreme care. Foremost, we must raise awareness of this issue before it CO2 levels rise too high.
+
+As shown above, the CO2 level is steadily rising, which means it is influencing and changing the Earth's global temperature as we speak. We must begin handeling this matter intently as it requires extreme care. Foremost, we must raise awareness of this issue before it CO2 levels rise too high.

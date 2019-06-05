@@ -21,7 +21,7 @@ shinyServer(function(input, output) {
   global_c02_types <- read.csv(file = "data/global.1751_2014.csv", stringsAsFactors = FALSE, sep = ",")
   
   output$message <- reactive({
-    paste(input$range[2])
+    paste(input$range[1])
   })
   
   # Render the plot of C02 based on input source.
@@ -61,15 +61,21 @@ shinyServer(function(input, output) {
   
   # Render the plot of average atmosheric C02 levels.
   output$c02_plot <- renderPlot({
-    temp2 <- global_c02 %>% filter(average >= 0) %>% filter(year >= input$global_range[1], year <= input$global_range[2])
-    result <-  ggplot(temp2) + #Removes negative values, which represent missing data.
+    global_c02 %>% filter(average >= 0) %>% filter(year >= input$range[1], year <= input$range[2]) %>% 
+      ggplot() + #Removes negative values, which represent missing data.
       geom_line(aes(x = decimal, y = average, color = "C02")) +
       geom_line(aes(x = decimal, y = trend, color = "Trend")) +
       ggtitle("Average Atmoshperic C02 Levels") +
       xlab("Year") + 
       ylab("C02 parts per Million")
-    return(result)
   })
   
   
 })
+
+
+  
+  
+  
+  
+
