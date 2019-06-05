@@ -26,28 +26,29 @@ shinyServer(function(input, output) {
   
   # Render the plot of C02 based on input source.
   output$c02_types <- renderPlot({
-    global_c02_types %>% filter(Year >= input$range[1], Year <= input$range[2])
+    c02_types <- global_c02_types %>% filter(Year >= input$range[1], Year <= input$range[2])
     #if(1 %in% input$co_2_type) {
      # global_c02_types <- 
     #}
-    for(column_name in input$co_2_type) {
-      global_c02_types <- select(global_c02_types, -c(UQ(column_name)))
-    }
-      temp <- ggplot(global_c02_types)
+    #for(column_name in input$co_2_type) {
+    #  global_c02_types <- select(global_c02_types, -c(UQ(column_name)))
+    #}
+    c02_types <- select(c02_types, Year, Total, Per_Capita, UQ(input$co_2_type))
+      temp <- ggplot(c02_types)
       temp <- temp + geom_line(aes(x = Year, y = Total, color = "Total"))
-      if("Gas_Fuel" %in% colnames(global_c02_types))  {
+      if("Gas_Fuel" %in% colnames(c02_types))  {
         temp <- temp + geom_line(aes(x = Year, y = Gas_Fuel, color = "Gas Fuel"))
       }
-      if("Liquid_Fuel" %in% colnames(global_c02_types))  {
+      if("Liquid_Fuel" %in% colnames(c02_types))  {
         temp <- temp + geom_line(aes(x = Year, y = Liquid_Fuel, color = "Liquid Fuel")) 
       }
-      if("Solid_Fuel" %in% colnames(global_c02_types))  {
+      if("Solid_Fuel" %in% colnames(c02_types))  {
         temp <- temp + geom_line(aes(x = Year, y = Solid_Fuel, color = "Solid Fuel")) 
       }
-      if("Cement_Production" %in% colnames(global_c02_types))  {
+      if("Cement_Production" %in% colnames(c02_types))  {
         temp <- temp + geom_line(aes(x = Year, y = Cement_Production, color = "Cement Production")) 
       }
-      if("Gas_Flairing" %in% colnames(global_c02_types))  {
+      if("Gas_Flairing" %in% colnames(c02_types))  {
         temp <- temp + geom_line(aes(x = Year, y = Gas_Flairing, color = "Gas Flairing")) 
       }
       temp <- temp +

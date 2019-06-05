@@ -18,7 +18,7 @@ c02_types <- read.csv(file = "data/global.1751_2014.csv", stringsAsFactors = FAL
 shinyUI(fluidPage(
   
   # Application title
-  titlePanel("Title here"),
+  titlePanel("Global Carbon Dioxide Atmopsheric Levels"),
   
   # Sidebar with a slider input for number of bins 
   sidebarLayout(
@@ -27,7 +27,7 @@ shinyUI(fluidPage(
       sliderInput("range", label = h3("Years Range"), min = 1751, 
                   max = 2019, value = c(1751,2019)),
       checkboxGroupInput("co_2_type",
-                    "Hide CO2 emission sources",
+                    "Filter CO2 emission sources",
                     choices = list ("Gas Fuel" = "Gas_Fuel",
                                     "Liquid Fuel" = "Liquid_Fuel",
                                     "Solid Fuel" = "Solid_Fuel",
