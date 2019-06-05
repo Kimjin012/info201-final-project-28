@@ -40,7 +40,6 @@ shinyUI(fluidPage(
     
     # Show a plot of the generated distribution
     mainPanel(
-      textOutput("message"),
       plotOutput("c02_types"),
       plotOutput("c02_plot")
     )
