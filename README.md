@@ -1,6 +1,6 @@
 # info201-final-project-28
 
-## The Change of level of Carbon Dioxide throughout time.
+# The Change of level of Carbon Dioxide throughout time.
 # Group 28 - Trinh, Marc, Noah, Jin
 
 This project is focuses on the data set we have gahter that has the record of the level of the Carbon Dioxide throughout time from 1751.
@@ -12,6 +12,5 @@ surface.
 Two shiny has been added for the user to interact with the data set, it let user to change the time zone and the source itself from two 
 different plot. It helps the user/audience to check different sources by getting more familiar with the time and changes.
 
-Link1 :
+Shiny Link :
 
-Link2 :
