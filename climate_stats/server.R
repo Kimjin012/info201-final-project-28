@@ -61,7 +61,7 @@ shinyServer(function(input, output) {
   
   # Render the plot of average atmosheric C02 levels.
   output$c02_plot <- renderPlot({
-    global_c02 %>% filter(average >= 0) %>% filter(year >= input$range[1], year <= input$range[2]) %>% 
+    global_c02 %>% filter(average >= 0) %>% filter(year >= input$global_range[1], year <= input$global_range[2]) %>% 
       ggplot() + #Removes negative values, which represent missing data.
       geom_line(aes(x = decimal, y = average, color = "C02")) +
       geom_line(aes(x = decimal, y = trend, color = "Trend")) +
@@ -72,3 +72,10 @@ shinyServer(function(input, output) {
   
   
 })
+
+
+  
+  
+  
+  
+
