@@ -24,10 +24,12 @@ shinyUI(fluidPage(
   sidebarLayout(
     sidebarPanel(
       # User Input for slelecting a Atmosphiric C02 Emmision Type
-      sliderInput("range", label = h3("Years Range"), min = 1751, 
+      sliderInput("range", label = h3("Years Range for Carbon Dioxide Type Emissions"), min = 1751, 
                   max = 2019, value = c(1751,2019)),
+      sliderInput("global_range", label = h3("Years Range for Global Emissions"), min = 1980, 
+                  max = 2018, value = c(1980,2018)),
       checkboxGroupInput("co_2_type",
-                    "Filter CO2 emission sources",
+                    "Show CO2 emission sources",
                     choices = list ("Gas Fuel" = "Gas_Fuel",
                                     "Liquid Fuel" = "Liquid_Fuel",
                                     "Solid Fuel" = "Solid_Fuel",
