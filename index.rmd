@@ -11,7 +11,13 @@ To help focus on learning about the change of carbon dioxide throughout the glob
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+library(shiny)
+library(ggplot2)
+library(dplyr)
+library(R.utils)
+knitr::opts_chunk$set(echo=FALSE, message=FALSE)
+source("climate_stats/server.R")
+source("climate_stats/ui.R")
 ```
 
 ## Data 1
@@ -33,9 +39,10 @@ Now let’s look at what is causing the CO2 level to rise every year and how muc
 plot(pressure)
 ```
 
-By looking at the data, we can observe that the CO2 level from all different source are constantly rising instead of dropping, we are constantly increasing the usage of fuels and manufacturing rate. Interesting changes we can observe is that the solid fuels were the dominant source of releasing Carbon Dioxide until 1968, since then liquid took the lead from any other source. Which shows that since 1968 the liquid fuel has become more flexible and reliable.
+By looking at the data, we can observe that the CO2 level from all different source are constantly rising instead of dropping, we are constantly increasing the usage of fuels and manufacturing rate. Interesting changes we can observe is that the solid fuels were the dominant source of releasing Carbon Dioxide until 1968, since then liquid took the lead from any other source until the year of 1985. Which shows that since 1968 the liquid fuel has become more flexible and reliable but after the year 1985 the liquid fuel has decreased it's popularity.
 
 ## Conclusion
+We have now have become very familiar that the level of CO2 is increasing as we observe the both plot.
 So what does this all mean? and what does increasing level of CO2 means to us?
 Unlike water vapor, Carbon dioxide remains a gas in almost any atmospheric temperature. When carbon dioxide level in the air decreases, Earth starts to cool, and some water vapor begins to separate off the atmosphere. But when carbon dioxide concentrations increases, air temperatures increases as well, and more and more water vapor evaporates into the atmosphere rather than fall, which then magnifies greenhouse heating.
 Hence, Carbon dioxide is the gas that sets the temperature. Carbon dioxide controls the amount of water vapor in the atmosphere and thus the size of the greenhouse effect.
