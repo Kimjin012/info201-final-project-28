@@ -1,5 +1,5 @@
 ---
-title: "index"
+title: "Report"
 output: html_document
 ---
 
@@ -16,8 +16,7 @@ library(ggplot2)
 library(dplyr)
 library(R.utils)
 knitr::opts_chunk$set(echo=FALSE, message=FALSE)
-source("climate_stats/server.R")
-source("climate_stats/ui.R")
+source("Graph.R")
 ```
 
 ## Data 1
@@ -25,7 +24,7 @@ source("climate_stats/ui.R")
 Let’s take a look at the Average Carbon dioxide level world wide, here we could understand better of just how much have change throughout the world by average. Here we have the graph that display the change of Carbon dioxide level in our Atmosphere from 1958 to 2019.
 
 ```{r cars}
-summary(cars)
+temp_1
 ```
 
 We can observe the simple pattern since the beginning, the patterns are not completely the same in every years but we can see there are always fall and rise, but by average it is constantly increasing every year.
@@ -36,7 +35,7 @@ We can observe the simple pattern since the beginning, the patterns are not comp
 Now let’s look at what is causing the CO2 level to rise every year and how much are they creating the Carbon Dioxide. This data set was recorded since 1751 but many of the source such as gas and liquid fuels were not in use until 1870.  The carbon emission is the term we use here and there are quite few. Main sources are from ofcourse, by fuel consumption, manufacturing and fire.
 
 ```{r pressure, echo=FALSE}
-plot(pressure)
+temp
 ```
 
 By looking at the data, we can observe that the CO2 level from all different source are constantly rising instead of dropping, we are constantly increasing the usage of fuels and manufacturing rate. Interesting changes we can observe is that the solid fuels were the dominant source of releasing Carbon Dioxide until 1968, since then liquid took the lead from any other source. Which shows that since 1968 the liquid fuel has become more flexible and reliable. But at 1985 the solid fuel has took back the lead again from liquid, proving that liquid has again become not so reliable compare it to the solid fuel. But yet the CO2 produce from liquid fuel has never decreased.
