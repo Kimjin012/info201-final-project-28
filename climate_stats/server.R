@@ -20,10 +20,6 @@ shinyServer(function(input, output) {
   # Data set of atmoshperic C02 emmisions from various sources, collected by NOAA.
   global_c02_types <- read.csv(file = "data/global.1751_2014.csv", stringsAsFactors = FALSE, sep = ",")
   
-  output$message <- reactive({
-    paste(input$range[1])
-  })
-  
   # Render the plot of C02 based on input source.
   output$c02_types <- renderPlot({
     c02_types <- global_c02_types %>% filter(Year >= input$range[1], Year <= input$range[2])
@@ -57,6 +53,19 @@ shinyServer(function(input, output) {
       xlab("Year") + 
       ylab("Million Metric Tons of Atmoshperici C02")
       return(temp)
+  })
+  
+  # Render the plot of average atmosheric C02 levels.
+  output$c02_bar <- renderPlot({
+    #global_c02_types$key=colnames(global_c02_types)
+    #global_c02_types %>% filter(Year >= input$range[1], Year <= input$range[2]) %>%
+    #  ggplot() + #Removes negative values, which represent missing data.
+    #  geom_col(aes(x=key, y=sum())) + #I am unable to get this part to work
+    #  ggtitle("Average Atmoshperic C02 Levels") +
+    #  xlab("Year") + 
+    #  ylab("C02 parts per Million")
+    count <- global_c02_types %>% filter(Year >= input$range[1], Year <= input$range[2])
+    count[3:8] %>% colSums() %>% barplot()
   })
   
   # Render the plot of average atmosheric C02 levels.
