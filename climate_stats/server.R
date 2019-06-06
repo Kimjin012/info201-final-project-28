@@ -11,6 +11,7 @@ library(shiny)
 library(ggplot2)
 library(dplyr)
 library(R.utils)
+library(tidyr)
 
 # Define server logic
 shinyServer(function(input, output) {
@@ -69,6 +70,36 @@ shinyServer(function(input, output) {
       xlab("Year") + 
       ylab("C02 parts per Million")
   })
+  
+  ##Pie Chart containing the percentage of each Carbon Dioxide emission contributing based on a year
+  output$pieChart <- renderPlot({
+    #if(input$year>1751 || input$year < 2019){
+      modified_c02 <- global_c02_types %>% filter(Year == input$year) %>% 
+        gather(-c(Year, Total, Per_Capita), key="Emission_Source", value = "C02_Emissions")
+      pie_chart <- ggplot(modified_c02, aes(x="", y=C02_Emissions, fill=Emission_Source)) +
+       geom_bar(width=1, stat = "identity") + coord_polar("y", start=0) + scale_fill_brewer(palette = "Blues") +
+        theme_minimal() + xlab("")
+      return(pie_chart)
+    #} else {
+     # return("Not valid year")
+    #}
+    
+  })
+
+  
+  ###Marc's Notes: With the function above, there are the following problems:
+  ##The user can manually input a year outside of the given boundary, which causes an error.
+  ##The if statement does nto fix this.
+  ##This was also intended to be a pie chart of the percentage each source contributes to
+  ##the Carbon Dioxide levels in the atmopshere. Whiel it does do that, it is rather crude.
+  ##Better numbers can be obtained by getting the total amount of Carbon Dixoide emissios
+  ##that year and dividing each number in the C02_Emissions column of the long table.
+  ##Doing this will allow you to then modify the code so that the percentage values will show up
+  ##with each pie slot.
+  ##
+  ##
+  ##If you do not feel like doing so, feel free to just change it to a bar chart by removing the 
+  ##coord_polar part of the code and making necessary adjustments.
   
   
 })

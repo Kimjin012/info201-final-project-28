@@ -11,6 +11,7 @@ library(shiny)
 library(ggplot2)
 library(dplyr)
 library(R.utils)
+library(tidyr)
 
 c02_types <- read.csv(file = "data/global.1751_2014.csv", stringsAsFactors = FALSE, sep = ",")
 
@@ -26,8 +27,6 @@ shinyUI(fluidPage(
       # User Input for slelecting a Atmosphiric C02 Emmision Type
       sliderInput("range", label = h3("Years Range for Carbon Dioxide Type Emissions"), min = 1751, 
                   max = 2019, value = c(1751,2019)),
-      sliderInput("global_range", label = h3("Years Range for Global Emissions"), min = 1980, 
-                  max = 2018, value = c(1980,2018)),
       checkboxGroupInput("co_2_type",
                     "Show CO2 emission sources",
                     choices = list ("Gas Fuel" = "Gas_Fuel",
@@ -35,13 +34,18 @@ shinyUI(fluidPage(
                                     "Solid Fuel" = "Solid_Fuel",
                                     "Cement Production" = "Cement_Production",
                                     "Gas Flairing" = "Gas_Flairing"),
-                    selected = c("Gas_Fuel", "Liquid_Fuel", "Solid_Fuel", "Cement_Production","Gas_Flairing"))
+                    selected = c("Gas_Fuel", "Liquid_Fuel", "Solid_Fuel", "Cement_Production","Gas_Flairing")),
+      sliderInput("global_range", label = h3("Years Range for Global Emissions"), min = 1980, 
+                  max = 2018, value = c(1980,2018)),
+      numericInput("year", "Year Displayed", 1751, min = 1751, max = 2019)
     ), 
     
     # Show a plot of the generated distribution
     mainPanel(
       plotOutput("c02_types"),
-      plotOutput("c02_plot")
+      plotOutput("c02_plot"),
+      plotOutput("pieChart")
+      ##textOutput("")
     )
   )
 ))
