@@ -11,6 +11,7 @@ library(shiny)
 library(ggplot2)
 library(dplyr)
 library(R.utils)
+library(tidyr)
 
 # Define server logic
 shinyServer(function(input, output) {
@@ -56,19 +57,6 @@ shinyServer(function(input, output) {
   })
   
   # Render the plot of average atmosheric C02 levels.
-  output$c02_bar <- renderPlot({
-    #global_c02_types$key=colnames(global_c02_types)
-    #global_c02_types %>% filter(Year >= input$range[1], Year <= input$range[2]) %>%
-    #  ggplot() + #Removes negative values, which represent missing data.
-    #  geom_col(aes(x=key, y=sum())) + #I am unable to get this part to work
-    #  ggtitle("Average Atmoshperic C02 Levels") +
-    #  xlab("Year") + 
-    #  ylab("C02 parts per Million")
-    count <- global_c02_types %>% filter(Year >= input$range[1], Year <= input$range[2])
-    count[3:8] %>% colSums() %>% barplot()
-  })
-  
-  # Render the plot of average atmosheric C02 levels.
   output$c02_plot <- renderPlot({
     global_c02 %>% filter(average >= 0) %>% filter(year >= input$global_range[1], year <= input$global_range[2]) %>% 
       ggplot() + #Removes negative values, which represent missing data.
@@ -79,7 +67,17 @@ shinyServer(function(input, output) {
       ylab("C02 parts per Million")
   })
   
-  
+  ##Pie Chart containing the percentage of each Carbon Dioxide emission contributing based on a year
+  output$pieChart <- renderPlot({
+    modified_c02 <- global_c02_types %>% filter(Year >= input$range[1], Year <= input$range[2]) %>%   
+        gather(-c(Year, Total, Per_Capita), key="Emission_Source", value = "C02_Emissions")
+      pie_chart <- ggplot(modified_c02, aes(x="", y=C02_Emissions, fill=Emission_Source)) +
+       geom_bar(width=1, stat = "identity") + coord_polar("y", start=0) + scale_fill_brewer(palette = "Blues") +
+        theme_minimal() + xlab("")
+      return(pie_chart)
+    
+  })
+
 })
 
 
